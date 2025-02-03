@@ -1,7 +1,7 @@
-// Import Firebase SDK yang diperlukan
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection, query, orderBy, limit, getDocs, addDoc, serverTimestamp } from "firebase/firestore";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+// Firebase konfigurasi
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 
 // Konfigurasi Firebase
 const firebaseConfig = {
@@ -60,6 +60,33 @@ async function submitPost(content) {
         console.error("Error posting:", error);
     }
 }
+
+// Fungsi Menyimpan Post ke Firestore
+async function savePost() {
+    const postContent = document.getElementById("postContent").value; // Ambil isi tulisan
+
+    if (postContent.trim() === "") {
+        alert("Post content cannot be empty!");
+        return;
+    }
+
+    try {
+        await addDoc(collection(db, "posts"), {
+            content: postContent,
+            timestamp: serverTimestamp()
+        });
+        alert("Post saved successfully!");
+        document.getElementById("postContent").value = ""; // Kosongkan input setelah disimpan
+    } catch (error) {
+        console.error("Error saving post:", error);
+        alert("Failed to save post.");
+    }
+}
+
+// Pastikan tombol Save Post terhubung dengan event listener
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("savePostBtn").addEventListener("click", savePost);
+});
 
 // Fungsi Login
 function login(email, password) {
