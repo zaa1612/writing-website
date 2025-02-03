@@ -1,0 +1,31 @@
+body {
+    background-color: #d1f2d3; /* Warna hijau pastel */
+    font-family: 'Pacifico', cursive; /* Font cute seperti tulisan tangan */
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #a8d8a2;
+    padding: 20px;
+    text-align: center;
+}
+
+header nav {
+    margin-top: 10px;
+}
+
+header nav a {
+    margin: 0 15px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+#posts {
+    margin: 20px;
+}
+
+h1, h2 {
+    color: #2c6e49; /* Warna hijau gelap */
+}
